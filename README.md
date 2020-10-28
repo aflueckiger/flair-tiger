@@ -2,7 +2,7 @@
 
 This repository contains the code to finetune pre-trained contextual word embeddings to predict POS tags (part of speech) of the German TIGER corpus using [Flair Framework](https://github.com/flairNLP/flair). The experiments are performed on [TIGER corpus version 2.2](https://www.ims.uni-stuttgart.de/documents/ressourcen/korpora/tiger-corpus/download/start.html). To train the embeddings, we use Google Colab:
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/googlecolab/colabtools/blob/master/notebooks/colab-github-demo.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/aflueckiger/flair-tiger/blob/main/flair-tiger-pos-tagging.ipynb)
 
 ## Introduction
 
