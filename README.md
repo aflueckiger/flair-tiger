@@ -32,29 +32,29 @@ The results are quite promising and outperform the current SOTA. When evaluated 
 
 **Table 1: Final scores for the models with different amount of training data**
 
-| Model | data split | **n of tokens** | **n of docs** | Accuracy / Micro F1 avg.                 |      | Accuracy / Macro F1 avg.                 |
-| --- | --- | --- | --- | --- | --- | --- |
-| Ours (LSTM + Flair)      | 0.05                                                         | 35'621          | 2045          | acc 		0.9781 - f1-score 0.9781     |      | acc 		0.8129 - f1-score 0.8563     |
-| Ours (LSTM + Flair)                                       | 0.1                                                          | 71520           | 4089          | acc 		0.9833 - f1-score 0.9833     |      | acc 		0.8666 - f1-score 0.9        |
-| Ours (LSTM + Flair)                                       | 0.2                                                          | 143709          | 8177          | acc 		0.9856 - f1-score 0.9856     |      | acc 		0.8745 - f1-score 0.8998     |
-| Ours (LSTM + Flair)                                       | 0.3                                                          | 217622          | 12265         | acc 		0.987 - f1-score 0.987       |      | acc 		0.8888 - f1-score 0.9068     |
-| Ours (LSTM + Flair)                                       | 0.4                                                          | 287325          | 16354         | acc 		0.9873 - f1-score 0.9873     |      | acc 		0.8909 - f1-score 0.9017     |
-| Ours (LSTM + Flair)                                       | 0.5                                                          | 360571          | 20442         | acc 		0.9878 - f1-score 0.9878     |      | acc 		0.8899 - f1-score 0.9107     |
-| Ours (LSTM + Flair)                                       | 0.7                                                          | 503520          | 28619         | acc 		0.9891 - f1-score 0.9891     |      | acc 		0.898 - f1-score 0.9078      |
-| Ours (LSTM + Flair)                                       | 1.0                                                          | 719826          | 40883         | **acc 		0.9893 - f1-score 0.9893** |      | **acc 		0.8983 - f1-score 0.9112** |
-| LSTM + Word-Char embedding(Horsmann et Zesch 2017) | 1.0 | -               | -             | acc 0.976                                |      |                                          |
+| Model | data split | **n of tokens** | **n of docs** | Accuracy (=micro F1 avg.) | Accuracy / Macro F1 avg.                 |
+| --- | --- | --- | --- | --- | --- |
+| Ours (LSTM + Flair)      | 0.05                                                         | 35'621          | 2045          | 0.9781                    | 0.8563     |
+| Ours (LSTM + Flair)                                       | 0.1                                                          | 71520           | 4089          | 0.9833     | 0.9031    |
+| Ours (LSTM + Flair)                                       | 0.2                                                          | 143709          | 8177          | 0.9856                    | 0.8998     |
+| Ours (LSTM + Flair)                                       | 0.3                                                          | 217622          | 12265         | 0.987       | 0.9068     |
+| Ours (LSTM + Flair)                                       | 0.4                                                          | 287325          | 16354         | 0.9873                    | 0.9017                   |
+| Ours (LSTM + Flair)                                       | 0.5                                                          | 360571          | 20442         | 0.9878     | 0.9107     |
+| Ours (LSTM + Flair)                                       | 0.7                                                          | 503520          | 28619         | 0.9891     | 0.9078      |
+| Ours (LSTM + Flair)                                       | 1.0                                                          | 719826          | 40883         | 0.9893** | **0.9112** |
+| LSTM + Word-Char embedding(Horsmann et Zesch 2017) | 1.0 | -               | -             | acc 0.976                                |                                          |
 
-The evaluation on the CMC and WEB data yields results of lower accuracy (see Table 2). The decrease is especially noticeable for the CMC dataset since it contains chat, blog comments and twitter texts that are highly inconsistent and provide many OOV-words[2](#sdfootnote2sym). Comparing to the previous results on the same test set, the accuracy is 1% lower. The model presented by Thater 2017, however, was trained on the data including the “in-domain” subset from EmpiriST corpus that helped the model to adapt to the test set. From this perspective, our evaluation is more strict that does not prevent our model to demonstrate high accuracy performance. On the Web data, the accuracy stays high and in this case, our approach achieves better scores than by the previous evaluation on the same dataset: 96% vs. 93%. (To evaluate the models on the additional test sets, classification_report from sklearn.metrics was used). 
+The evaluation on the CMC (4722 tokens) and WEB (7425 tokens) data yields results of lower accuracy (see Table 2). The decrease is especially noticeable for the CMC dataset since it contains chat, blog comments and twitter texts that are highly inconsistent and provide many OOV-words [2](#sdfootnote2sym). Comparing to the previous results on the same test set, the accuracy is 1% lower. The model presented by Thater 2017, however, was trained on the data including the “in-domain” subset from EmpiriST corpus that helped the model to adapt to the test set. From this perspective, our evaluation is more strict that does not prevent our model to demonstrate high accuracy performance. On the Web data, the accuracy stays high and in this case, our approach achieves better scores than by the previous evaluation on the same dataset: 96% vs. 93%. (To evaluate the models on the additional test sets, classification_report from sklearn.metrics was used). 
 
 **Table 2: Evaluation on CMC and Web test data (accuracy)**
 
-| Model                                        | model (split)                   | CMC (4722 tokens) | WEB (7425 tokens) |
-| -------------------------------------------- | ------------------------------- | ----------------- | ----------------- |
-| Ours (LSTM + Flair)                          | 0.05                            | 0.86              | 0.95              |
-| Ours (LSTM + Flair)                          | 0.1                             | 0.87              | 0.96              |
-| Ours (LSTM + Flair)                          | 0.5                             | 0.87              | 0.96              |
-| Ours (LSTM + Flair)                          | 1.0                             | 0.87              | 0.97              |
-| HMM + distributional smoothing (Thater 2017) | trained on the TIGER + EmpiriST | 0.8838            | 0.9335            |
+| Model                                        | model (split)                   | Acc. on CMC | Acc. on WEB |
+| -------------------------------------------- | ------------------------------- | ----------- | ----------- |
+| Ours (LSTM + Flair)                          | 0.05                            | 0.86        | 0.95        |
+| Ours (LSTM + Flair)                          | 0.1                             | 0.87        | 0.96        |
+| Ours (LSTM + Flair)                          | 0.5                             | 0.87        | 0.96        |
+| Ours (LSTM + Flair)                          | 1.0                             | 0.87        | 0.97        |
+| HMM + distributional smoothing (Thater 2017) | trained on the TIGER + EmpiriST | 0.8838      | 0.9335      |
 
 Training and evaluating a model on two different datasets inevitably leads to the drop of the accuracy, also partly due to the inter-annotator agreement that will be always lower between two different sets than within the single one. The analysis of the errors on the CMC dataset shows that the most frequent classes with low scores (precision, recall, F1) are:
 
@@ -68,14 +68,14 @@ Among other mistakes there were substitutions of imperative verbs by finite verb
 
 **Table 3: Some of the errors (from the CMC)**
 
-| **Sentence <pred/true>**                                     | **Comment**                                                  |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| 1) 		**Danke <VVFIN/PTKANT**> für <APPR> den <ART> 		Tip <NN> . <$.> **schreibe <VVFIN/VVIMP**> 		meine <PPOSAT> **addy <NE/NN**> auf <PTKVZ> : 		<$.> [ <$(> Email-Adresse <NN> ] <$(> **ja 		<PTKVZ/PTKANT**> , <$,> **tschüss <VVFIN/ITJ**> 		ihr <PPER> zwei <CARD> . <$.> | PTKANT 		— Antwortpartikel — classified as a finite verb. 		 		Imperative 		verb classified as a finite verb. 		 		ITJ — 		Interjektion — classified as a finite verb. |
-| 2) Und 		<KON> viele <PIAT> Geschenke <NN> und <KON> 		einen <ART> guten <ADJA> Rutsch <NN> und <KON> 		überhaupt <ADV> das <ART> **beste <ADJA/NN**> 		! <$.> du <PPER> mich <PPER> auch <ADV> 		... <$(> hübsche <ADJA> **nikolaus <NE/NN**> 		! <$.> du <PPER> mich <PPER> **mehr <ADV/PIS**> 		! <$.> **na <ADV/ITJ> szia <NE/FM>** !!!! 		<$.> | ITJ — 		Interjektion — classified as an adverb.        |
-| 3) 		HErr <NE> Özdemir <NE> , <$,> antworten 		<VVFIN/**VVIMP** > Sie <PPER> ! <$.> | Imperative 		verb classified as a finite verb.         |
-| 4) 		verherend <ADJD> ist <VAFIN> die <ART> 		ideologische <ADJA> drogenpolitik <NN> **a <FM/KOKOM> 		la <FM/KOKOM> dsu <FM/NE>** Wollen <VMFIN> Sie 		<PPER> den <ART> Irrsinn <NN> nicht <PTKNEG> 		**endlich <ADV/ADJD**> beenden <VVINF> , <$,> 		die <ART> Alltagsdrogen <NN> Nikotin <NN> , <$,> 		Medikamentenmissbrauch <NN> und <KON> Alkohol <NN> 		zu <PTKZU> verharmlosen <VVINF> und <KON> den 		<ART> Gebrauch <NN> von <APPR> 		Cannabis-Produkten <NN> zu <PTKZU> kriminalisieren 		<VVINF> . <$.> | KOKOM 		— Vergleichspartikel ohne Satz; 		 		FM — 		Fremdsprachliches Material (not necessarily a fault of the tagger, 		since this can be considered as short sequence of FM). |
-| 5) 		Wissenschaft <NN> sagt <VVFIN> **etwas <PIS/PIAT>** 		anderes <PIS> ! <$.> | PIAT — 		attributierendes Indefinitpronomen ohne Determiner; PIS — 		substituierendes Indefinitpronomen. Two categories are very close 		to each other. |
-| 6) die 		<ART> niederländer <NN> bedauern <VVFIN> heute 		<ADV> ihre <PPOSAT> entscheidung <NN> die <ART> 		freigabe <NN> von <APPR> **haschisch <ADJD/NN>** 		. <$.> | The 		form is close to an adjective one with suffix -isch. |
+| Sentence <pred/true> | Comment |
+| --- | --- |
+| 1) 		**Danke <VVFIN/PTKANT**> für <APPR> den <ART> 		Tip <NN> . <$.> **schreibe <VVFIN/VVIMP**> 		meine <PPOSAT> **addy <NE/NN**> auf <PTKVZ> : 		<$.> [ <$(> Email-Adresse <NN> ] <$(> **ja 		<PTKVZ/PTKANT**> , <$,> **tschüss <VVFIN/ITJ**> 		ihr <PPER> zwei <CARD> . <$.> | PTKANT — Antwortpartikel — classified as a finite verb. Imperative verb classified as a finite verb.<br />ITJ — Interjektion — classified as a finite verb. |
+| 2) Und 		<KON> viele <PIAT> Geschenke <NN> und <KON> 		einen <ART> guten <ADJA> Rutsch <NN> und <KON> 		überhaupt <ADV> das <ART> **beste <ADJA/NN**> 		! <$.> du <PPER> mich <PPER> auch <ADV> 		... <$(> hübsche <ADJA> **nikolaus <NE/NN**> 		! <$.> du <PPER> mich <PPER> **mehr <ADV/PIS**> 		! <$.> **na <ADV/ITJ> szia <NE/FM>** !!!! 		<$.> | ITJ — Interjektion — classified as an adverb.        |
+| 3) 		HErr <NE> Özdemir <NE> , <$,> antworten 		<VVFIN/**VVIMP** > Sie <PPER> ! <$.> | Imperative verb classified as a finite verb.         |
+| 4) 		verherend <ADJD> ist <VAFIN> die <ART> 		ideologische <ADJA> drogenpolitik <NN> **a <FM/KOKOM> 		la <FM/KOKOM> dsu <FM/NE>** Wollen <VMFIN> Sie 		<PPER> den <ART> Irrsinn <NN> nicht <PTKNEG> 		**endlich <ADV/ADJD**> beenden <VVINF> , <$,> 		die <ART> Alltagsdrogen <NN> Nikotin <NN> , <$,> 		Medikamentenmissbrauch <NN> und <KON> Alkohol <NN> 		zu <PTKZU> verharmlosen <VVINF> und <KON> den 		<ART> Gebrauch <NN> von <APPR> 		Cannabis-Produkten <NN> zu <PTKZU> kriminalisieren 		<VVINF> . <$.> | KOKOM — Vergleichspartikel ohne Satz; <br />FM — 		Fremdsprachliches Material (not necessarily a fault of the tagger, since this can be considered as short sequence of FM). |
+| 5) 		Wissenschaft <NN> sagt <VVFIN> **etwas <PIS/PIAT>** 		anderes <PIS> ! <$.> | PIAT — attributierendes Indefinitpronomen ohne Determiner; <br />PIS — substituierendes Indefinitpronomen. Two categories are very close to each other. |
+| 6) die 		<ART> niederländer <NN> bedauern <VVFIN> heute 		<ADV> ihre <PPOSAT> entscheidung <NN> die <ART> 		freigabe <NN> von <APPR> **haschisch <ADJD/NN>** 		. <$.> | The form is close to an adjective one with suffix -isch. |
 
 
 
@@ -95,12 +95,12 @@ Horsmann, Tobias, and Torsten Zesch. "Do LSTMs really work so well for PoS taggi
 
 Thater, Stefan. "Fine-Grained POS Tagging of German Social Media and Web Texts." In *International Conference of the German Society for Computational Linguistics and Language Technology*, pp. 72-80. Springer, Cham, 2017.
 
-
+## Footnotes
 
 
 ​	[1](#sdfootnote1anc)  https://sites.google.com/site/empirist2015/home/shared-task-data
 
-​	[2](#sdfootnote2anc) Since our model is character-based, there are no actual OOV-words but rather unseen words during the training phase. We still refer to them as OOV in the following text.
+​	[2](#sdfootnote2sym) Since our model is character-based, there are no actual OOV-words but rather unseen words during the training phase. We still refer to them as OOV in the following text.
 
 ​	[3](#sdfootnote3anc)   Annotation guidelines: https://sites.google.com/site/empirist2015/home/annotation-guidelines.
 
